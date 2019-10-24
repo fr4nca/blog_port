@@ -13,6 +13,7 @@ routes.post('/sessions', SessionController.store);
 // Private routes
 routes.use(authMiddleware);
 
+routes.get('/posts', PostController.index);
 routes.post('/posts', PostController.store);
 
 export default routes;

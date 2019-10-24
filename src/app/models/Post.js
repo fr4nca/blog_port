@@ -15,6 +15,10 @@ class Post extends Model {
 
     return this;
   }
+
+  static associate(models) {
+    this.belongsTo(models.User, { foreignKey: 'author_id', as: 'author' });
+  }
 }
 
 export default Post;
