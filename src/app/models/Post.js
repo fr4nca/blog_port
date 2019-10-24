@@ -7,6 +7,7 @@ class Post extends Model {
         title: Sequelize.STRING,
         body: Sequelize.TEXT,
         author_id: Sequelize.INTEGER,
+        deleted: Sequelize.BOOLEAN,
       },
       {
         sequelize,

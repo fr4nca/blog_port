@@ -15,5 +15,6 @@ routes.use(authMiddleware);
 
 routes.get('/posts', PostController.index);
 routes.post('/posts', PostController.store);
+routes.delete('/posts/:id', PostController.delete);
 
 export default routes;
