@@ -26,5 +26,7 @@ routes.post('/skillareas', SkillAreaController.create);
 routes.put('/skillareas/:id', SkillAreaController.update);
 
 routes.get('/skills', SkillController.index);
+routes.post('/skills', SkillController.create);
+routes.put('/skills/:id', SkillController.update);
 
 export default routes;
