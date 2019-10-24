@@ -49,6 +49,50 @@ class PostController {
     }
   }
 
+  async retrieve(req, res) {
+    const post = await Post.findByPk(req.params.id, {
+      attributes: ['id', 'title', 'body', 'created_at', 'deleted'],
+      include: [
+        {
+          model: User,
+          as: 'author',
+          attributes: ['id', 'name'],
+        },
+      ],
+    });
+
+    if (!post) {
+      return res
+        .status(400)
+        .json({ error: 'Post with id provided does not exists.' });
+    }
+
+    return res.json(post);
+  }
+
+  async update(req, res) {
+    const schema = Yup.object().shape({
+      title: Yup.string(),
+      body: Yup.string(),
+    });
+
+    if (!(await schema.isValid(req.body))) {
+      return res.status(400).json({ error: 'Validation failed.' });
+    }
+
+    const post = await Post.findByPk(req.params.id);
+
+    if (post.author_id !== req.userId) {
+      return res.status(401).json({
+        error: "You don't have permission to update this post.",
+      });
+    }
+
+    const { id, title, body, deleted, author_id } = await post.update(req.body);
+
+    return res.json({ id, title, body, deleted, author_id });
+  }
+
   async delete(req, res) {
     const post = await Post.findByPk(req.params.id, {
       include: [
