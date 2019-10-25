@@ -1,9 +1,9 @@
 module.exports = {
   dialect: 'postgres',
-  host: 'localhost',
-  username: 'postgres',
-  password: 'asd123',
-  database: 'fr4nca',
+  host: 'ip-45-79-51-149.cloudezapp.io',
+  username: 'fr4nca',
+  password: '!#V1t40',
+  database: 'victorfranca',
   define: {
     timestamps: true,
     underscored: true,
